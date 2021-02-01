@@ -1,6 +1,8 @@
-<%@ page import="java.util.*,
-				model.*,
-				controller.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<jsp:useBean id="dao" class="model.DAO" />
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -22,21 +24,17 @@
 				<th>Tipo</th>
 			</tr>
 		</thead>
-		<%
-		DAO dao = new DAO();
-		List<JavaBeans> contatos = dao.listarContatos();
-		for (JavaBeans contato : contatos) {
-		%>
+
 		<tbody>
-			<tr>
-				<td><%=contato.getNome()%></td>
-				<td><%=contato.getFone()%></td>
-				<td><%=contato.getTipo()%></td>
-			</tr>
+			<c:forEach var="contato" items="${dao.listarContatos()}">
+				<tr>
+					<td>${contato.nome}</td>
+					<td>${contato.fone}</td>
+					<td>${contato.tipo}</td>
+				</tr>
+			</c:forEach>
 		</tbody>
-		<%
-		}
-		%>
+
 	</table>
 </body>
 </html>
