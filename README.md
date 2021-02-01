@@ -16,17 +16,7 @@ Projeto para a disciplina de Web II do curso de Tecnologia em Análise e Desenvo
 Desenvolvimento Local. Linux Fedora 32.
 
 ### Prerequisites
-
-Eclipse Java EE. Apache Tomcat. Serverless (npm). Mysql Connector/J.
-
-### Installing
-
-Serverless:
-```
-npm install -g serverless
-serverless
-serverless --version
-```
+Java Development Kit (JDK). Eclipse IDE Java EE. Apache Tomcat. Mysql (Connector/J.)
 
 ## Usage <a name = "usage"></a>
 

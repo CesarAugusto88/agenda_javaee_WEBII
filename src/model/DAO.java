@@ -3,6 +3,8 @@ package model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class DAO {
 	/** Modulo de conexao **/
@@ -45,6 +47,80 @@ public class DAO {
 			pst.setString(3, contato.getFone2());
 			pst.setString(4, contato.getEmail());
 			pst.setString(5, contato.getTipo());
+			// Executar a query
+			pst.executeUpdate();
+			// Encerrar a conexão com o banco de dados
+			con.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+	/** CRUD READ **/
+	public ArrayList<JavaBeans> listarContatos() {
+		// Criando um objeto para acessar a classe JavaBeans
+		ArrayList<JavaBeans> contatos = new ArrayList<>();
+		String read = "select * from contatos order by nome";
+		try {
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(read);
+			ResultSet rs = pst.executeQuery();
+			// O laço abaixo será executado enquanto houver contatos
+			while (rs.next()) {
+				// variaveis de apoio que recebem dados do banco
+				String idcon = rs.getString(1);
+				String nome = rs.getString(2);
+				String fone = rs.getString(3);
+				String fone2 = rs.getString(4);
+				String email = rs.getString(5);
+				String tipo = rs.getString(6);
+				// populando o ArrayList
+				contatos.add(new JavaBeans(idcon, nome, fone, fone2, email, tipo));
+			}
+			con.close();
+			return contatos;
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+
+	/** CRUD UPDATE **/
+	public void alterarContato(JavaBeans contato) {
+		String update = "update contatos set nome=?, fone=?, fone2=?, email=?, " +
+						"tipo=? where idcon=?";
+		try {
+			// abrir a conexao
+			Connection con = conectar();
+			// Preparar a query para execução no banco de dados
+			PreparedStatement pst = con.prepareStatement(update);
+			// Substituir os parâmetros (?) pelo conteúdo das variáveis JavaBeans
+			pst.setString(1, contato.getNome());
+			pst.setString(2, contato.getFone());
+			pst.setString(3, contato.getFone2());
+			pst.setString(4, contato.getEmail());
+			pst.setString(5, contato.getTipo());
+			// Executar a query
+			pst.executeUpdate();
+			// Encerrar a conexão com o banco de dados
+			con.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+	/** CRUD DELETE **/
+	public void removerContato(JavaBeans contato) {
+		String delete = "delete from contatos where idcon=?";
+		try {
+			// abrir a conexao
+			Connection con = conectar();
+			// Preparar a query para execução no banco de dados
+			PreparedStatement pst = con.prepareStatement(delete);
+			// Substituir os parâmetros (?) pelo conteúdo das variáveis JavaBeans
+			pst.setString(1, contato.getIdcon());
 			// Executar a query
 			pst.executeUpdate();
 			// Encerrar a conexão com o banco de dados
