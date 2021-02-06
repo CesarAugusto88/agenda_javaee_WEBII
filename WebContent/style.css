@@ -11,10 +11,39 @@ h1 {
 	color: #557fa8;
 }
 
+a {
+    text-decoration: none; 
+}
+
+/*
+  text-align: center;
+  background-color: #eeeeec;
+  padding: 2px;
+  color: #000000;
+*/
+th, td {
+  border: 1px solid black;
+
+  font-size: 1em;
+  font-weight: 700;
+} 
+
 .Botao1 {
 	text-decoration: none;
 	background-color: #557fa8;
 	padding: 5px 10px 5px 10px;
+	color: #fff;
+	font-size: 1.2em;
+	font-weight: 700;
+	border-radius: 5px;
+	border: 0;
+	cursor: pointer;
+}
+
+.Botao2 {
+	text-decoration: none;
+	background-color: #ef2929;
+	padding: 10px;
 	color: #fff;
 	font-size: 1.2em;
 	font-weight: 700;

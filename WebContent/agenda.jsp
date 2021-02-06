@@ -11,26 +11,33 @@
 <title>Agenda de Contatos</title>
 <link rel="icon" href="imagens/favicon.png">
 <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 	<h1>Agenda de Contatos</h1>
 	<a href="novo.html" class="Botao1">Novo contato</a>
-	<h4>Lista de Contatos</h4>
+	<h3>Lista de Contatos</h3>
 	<table>
 		<thead>
 			<tr>
+				<th>ID</th>
 				<th>Nome</th>
 				<th>Fone</th>
 				<th>Tipo</th>
+				<th>Opções</th>
 			</tr>
 		</thead>
 
 		<tbody>
 			<c:forEach var="contato" items="${dao.listarContatos()}">
 				<tr>
+					<td>${contato.idcon}</td>
 					<td>${contato.nome}</td>
 					<td>${contato.fone}</td>
 					<td>${contato.tipo}</td>
+					<td><a href="update?alteraContato&idcon=${contato.idcon}" style="color:green;">Alterar</a>
+					 | <a href="delete?removeContato&idcon=${contato.idcon} " style="color:red;"
+					 onclick="return confirm('Tem certeza que deseja remover esse registro?');">Remover</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

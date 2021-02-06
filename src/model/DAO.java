@@ -87,28 +87,30 @@ public class DAO {
 	}
 
 	/** CRUD UPDATE **/
-	public void alterarContato(JavaBeans contato) {
-		String update = "update contatos set nome=?, fone=?, fone2=?, email=?, " +
-						"tipo=? where idcon=?";
+	public int alterarContato(JavaBeans contato) {
+		String sql = "update contatos set nome=?, fone=?, fone2=?, email=?, tipo=? where idcon=?";
 		try {
 			// abrir a conexao
 			Connection con = conectar();
+			int i = 1;
 			// Preparar a query para execução no banco de dados
-			PreparedStatement pst = con.prepareStatement(update);
+			PreparedStatement pst = con.prepareStatement(sql);
 			// Substituir os parâmetros (?) pelo conteúdo das variáveis JavaBeans
-			pst.setString(1, contato.getNome());
-			pst.setString(2, contato.getFone());
-			pst.setString(3, contato.getFone2());
-			pst.setString(4, contato.getEmail());
-			pst.setString(5, contato.getTipo());
-			// Executar a query
-			pst.executeUpdate();
-			// Encerrar a conexão com o banco de dados
-			con.close();
+			pst.setString(i++, contato.getNome());
+			pst.setString(i++, contato.getFone());
+			pst.setString(i++, contato.getFone2());
+			pst.setString(i++, contato.getEmail());
+			pst.setString(i++, contato.getTipo());
+			pst.setString(i++, contato.getIdcon());
+			
+			int cod = pst.executeUpdate();
+			
+			return cod;
 
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		return 0;
 	}
 
 	/** CRUD DELETE **/
