@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<jsp:useBean id="dao" class="model.DAO" />
-<jsp:useBean id="controller" class="controller.Controller" />
+<jsp:useBean id="contato" class="model.JavaBeans"  scope="request"/>
 
 <!DOCTYPE html>
 <html>
@@ -13,13 +12,13 @@
 </head>
 <body>
 <form action="update">
-		Id: <input type="text" name="idcon"/><br/>
-		Nome: <input type="text" name="nome"/><br/>
-		Fone: <input type="text" name="fone"/><br/>
-		Fone 2: <input type="text" name="fone2"/><br/>
-		E-mail: <input type="text" name="email"/><br/>
-		Tipo: <input type="text" name="tipo"/><br/>
-		<input type="hidden" name="idcon"value="dao.alterarContato"/>
+		Id: <%=contato.getIdcon()%><br/>
+		Nome: <input type="text" name="nome" value="<%=contato.getNome()%>"/><br/>
+		Fone: <input type="text" name="fone" value="<%=contato.getNome()%>"/><br/>
+		Fone 2: <input type="text" name="fone2" value="<%=contato.getNome()%>"/><br/>
+		E-mail: <input type="text" name="email" value="<%=contato.getNome()%>"/><br/>
+		Tipo: <input type="text" name="tipo" value="<%=contato.getNome()%>"/><br/>
+		<input type="hidden" name="idcon" value="<%=contato.getIdcon()%>"/>
 		<input type="submit" value="Enviar"/>
 </form>
 </body>
