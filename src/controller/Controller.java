@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.DAO;
 import model.JavaBeans;
 
-@WebServlet(urlPatterns = { "/Controller", "/insert", "/update", "/delete", "/edit" })
+@WebServlet(urlPatterns = {"/Controller", "/edit", "/update", "/delete"})
 public class Controller extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -38,7 +38,7 @@ public class Controller extends HttpServlet {
 		} else if (action.equals("/update")) {
 			alteraContato(request, response);
 		} else if (action.equals("/delete")) {
-			removeContato(request, response);
+			deleteContato(request, response);
 		} else {
 			response.sendRedirect("index.html");
 		}
@@ -61,7 +61,7 @@ public class Controller extends HttpServlet {
 			}
 			rd.forward(request, response);
 		} catch (Exception e) {
-			response.sendRedirect("/error-contato-nao-encontrado.jsp");
+			response.sendRedirect("error-contato-nao-encontrado.jsp");
 		}
 
 	}
@@ -83,22 +83,26 @@ public class Controller extends HttpServlet {
 			dao.alterarContato(contato);
 			response.sendRedirect("agenda.jsp");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			response.sendRedirect("error-editar.jsp");
 		}
 	}
 
 	// Delete contato
-	protected void removeContato(HttpServletRequest request, HttpServletResponse response)
+	protected void deleteContato(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Setar as variaveis JavaBeans
+
 		JavaBeans contato = new JavaBeans();
+
 		contato.setIdcon(request.getParameter("idcon"));
-		// Invocar o metodo removerContato passando o objeto contato
-		dao.removerContato(contato);
-		// redirecionamento para o documento agenda.jsp
-		response.sendRedirect("main");
+
+		try {
+			dao.removerContato(contato);
+			response.sendRedirect("agenda.jsp");
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.sendRedirect("main");
+		}
 	}
 
 }

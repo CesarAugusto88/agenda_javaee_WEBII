@@ -132,44 +132,52 @@ public class DAO {
 		}
 	}
 
-	/** CRUD UPDATE 
-	 * @throws Exception **/
+	/**
+	 * CRUD UPDATE
+	 * 
+	 * @throws Exception
+	 **/
 	public int alterarContato(JavaBeans contato) throws Exception {
 		return executar(con -> {
 			String sql = "update contatos set nome=?, fone=?, fone2=?, email=?, tipo=? where idcon=?";
 			// Preparar a query para execução no banco de dados
 			PreparedStatement pst = con.prepareStatement(sql);
 			// Substituir os parâmetros (?) pelo conteúdo das variáveis JavaBeans
-			int i=1;
+			int i = 1;
 			pst.setString(i++, contato.getNome());
 			pst.setString(i++, contato.getFone());
 			pst.setString(i++, contato.getFone2());
 			pst.setString(i++, contato.getEmail());
 			pst.setString(i++, contato.getTipo());
 			pst.setString(i++, contato.getIdcon());
-			
+
 			return pst.executeUpdate();
 		});
 	}
 
 	/** CRUD DELETE **/
-	public void removerContato(JavaBeans contato) {
-		String delete = "delete from contatos where idcon=?";
-		try {
-			// abrir a conexao
-			Connection con = conectar();
+	/*
+	 * public void removerContato(JavaBeans contato) { String delete =
+	 * "delete from contatos where idcon=?"; try { // abrir a conexao Connection con
+	 * = conectar(); // Preparar a query para execução no banco de dados
+	 * PreparedStatement pst = con.prepareStatement(delete); // Substituir os
+	 * parâmetros (?) pelo conteúdo das variáveis JavaBeans pst.setString(1,
+	 * contato.getIdcon()); // Executar a query pst.executeUpdate(); // Encerrar a
+	 * conexão com o banco de dados con.close();
+	 * 
+	 * } catch (Exception e) { System.out.println(e); } }
+	 */
+	public int removerContato(JavaBeans contato) throws Exception {
+		return executar(con -> {
+			String delete = "delete from contatos where idcon=?";
 			// Preparar a query para execução no banco de dados
 			PreparedStatement pst = con.prepareStatement(delete);
 			// Substituir os parâmetros (?) pelo conteúdo das variáveis JavaBeans
 			pst.setString(1, contato.getIdcon());
 			// Executar a query
-			pst.executeUpdate();
-			// Encerrar a conexão com o banco de dados
-			con.close();
-
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+			// Executar a query
+			return pst.executeUpdate();
+		});
 	}
 
 	public Optional<JavaBeans> buscarContato(String idconRef) throws Exception {
