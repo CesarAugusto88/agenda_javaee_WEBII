@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.DAO;
 import model.JavaBeans;
 
-@WebServlet(urlPatterns = { "/Controller", "/insert", "/update", "/delete", "/edit" })
+@WebServlet(urlPatterns = { "/Controller", "/update", "/delete", "/edit" })
 public class Controller extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -81,7 +81,7 @@ public class Controller extends HttpServlet {
 
 		try {
 			dao.alterarContato(contato);
-			response.sendRedirect("agenda.jsp");
+			response.sendRedirect("main");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -96,9 +96,16 @@ public class Controller extends HttpServlet {
 		JavaBeans contato = new JavaBeans();
 		contato.setIdcon(request.getParameter("idcon"));
 		// Invocar o metodo removerContato passando o objeto contato
-		dao.removerContato(contato);
-		// redirecionamento para o documento agenda.jsp
-		response.sendRedirect("main");
+		try {
+			dao.removerContato(contato);
+			// redirecionamento para o documento agenda.jsp
+			response.sendRedirect("main");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			response.sendRedirect("error-novo.jsp");	
+		}
+		
 	}
 
 }
