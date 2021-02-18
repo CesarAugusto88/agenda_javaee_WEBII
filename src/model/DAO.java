@@ -155,16 +155,33 @@ public class DAO {
 		});
 	}
 
+	/** CRUD DELETE **/
+	/*
+	 * public void removerContato(JavaBeans contato) { String delete =
+	 * "delete from contatos where idcon=?"; try { // abrir a conexao Connection con
+	 * = conectar(); // Preparar a query para execução no banco de dados
+	 * PreparedStatement pst = con.prepareStatement(delete); // Substituir os
+	 * parâmetros (?) pelo conteúdo das variáveis JavaBeans pst.setString(1,
+	 * contato.getIdcon()); // Executar a query pst.executeUpdate(); // Encerrar a
+	 * conexão com o banco de dados con.close();
+	 * 
+	 * } catch (Exception e) { System.out.println(e); } }
+	 */
+	public int removerContato(JavaBeans contato) throws Exception {
+		return executar(con -> {
+
 	/** CRUD DELETE 
 	 * @throws Exception **/
 	public void removerContato(JavaBeans contato) throws Exception {
 		executar(con -> {
+
 			String delete = "delete from contatos where idcon=?";
 			// Preparar a query para execução no banco de dados
 			PreparedStatement pst = con.prepareStatement(delete);
 			// Substituir os parâmetros (?) pelo conteúdo das variáveis JavaBeans
 			pst.setString(1, contato.getIdcon());
 			// Executar a query
+
 			pst.executeUpdate();
 
 			return pst.executeUpdate();

@@ -25,3 +25,5 @@ Adiciona contatos de uma agenda no banco MySQL Local.
 ## Contributing <a name = "contributing"></a>
 
 - [Cesar Costa](https://github.com/cesaraugusto88)
+
+- [Maximillian Arruda](https://github.com/dearrudam)

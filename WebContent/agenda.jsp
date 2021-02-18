@@ -1,9 +1,6 @@
-<%@page import="model.JavaBeans"%>
-<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <jsp:useBean id="contatos" type="java.util.ArrayList<model.JavaBeans>" scope="request" />
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -25,28 +22,30 @@
 	<div><%=mensagem%></div>
 	<%
 		}
-	%>
 	<table>
 		<thead>
 			<tr>
 				<th>ID</th>
 				<th>Nome</th>
 				<th>Fone</th>
+				<th>Fone 2</th>
+				<th>E-mail</th>
 				<th>Tipo</th>
 				<th>Opções</th>
 			</tr>
 		</thead>
 
 		<tbody>
-			<c:forEach var="contato" items="${contatos}">
+			<c:forEach var="contato" items="${dao.listarContatos()}">
 				<tr>
 					<td>${contato.idcon}</td>
 					<td>${contato.nome}</td>
 					<td>${contato.fone}</td>
+					<td>${contato.fone2}</td>
+					<td>${contato.email}</td>
 					<td>${contato.tipo}</td>
 					<td><a href="edit?idcon=${contato.idcon}"
-						style="color: green;">Alterar</a> | <a
-						href="delete?idcon=${contato.idcon} " style="color: red;"
+						style="color: green;">Alterar</a> | <a href="delete?idcon=${contato.idcon}" style="color: red;"
 						onclick="return confirm('Tem certeza que deseja remover esse registro?');">Remover</a></td>
 				</tr>
 			</c:forEach>
