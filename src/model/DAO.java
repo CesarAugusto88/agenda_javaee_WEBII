@@ -155,6 +155,7 @@ public class DAO {
 		});
 	}
 
+<<<<<<< HEAD
 	/** CRUD DELETE **/
 	/*
 	 * public void removerContato(JavaBeans contato) { String delete =
@@ -169,13 +170,24 @@ public class DAO {
 	 */
 	public int removerContato(JavaBeans contato) throws Exception {
 		return executar(con -> {
+=======
+	/** CRUD DELETE 
+	 * @throws Exception **/
+	public void removerContato(JavaBeans contato) throws Exception {
+		executar(con -> {
+>>>>>>> 33ecb898d2fddbe52cf5888ed3e1674016f0a668
 			String delete = "delete from contatos where idcon=?";
 			// Preparar a query para execução no banco de dados
 			PreparedStatement pst = con.prepareStatement(delete);
 			// Substituir os parâmetros (?) pelo conteúdo das variáveis JavaBeans
 			pst.setString(1, contato.getIdcon());
 			// Executar a query
+<<<<<<< HEAD
 			// Executar a query
+=======
+			pst.executeUpdate();
+
+>>>>>>> 33ecb898d2fddbe52cf5888ed3e1674016f0a668
 			return pst.executeUpdate();
 		});
 	}

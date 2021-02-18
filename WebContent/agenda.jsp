@@ -1,9 +1,18 @@
+<<<<<<< HEAD
+=======
+<%@page import="model.JavaBeans"%>
+<%@page import="java.util.*"%>
+>>>>>>> 33ecb898d2fddbe52cf5888ed3e1674016f0a668
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<<<<<<< HEAD
 <jsp:useBean id="dao" class="model.DAO" />
 
+=======
+<jsp:useBean id="contatos" type="java.util.ArrayList<model.JavaBeans>" scope="request" />
+>>>>>>> 33ecb898d2fddbe52cf5888ed3e1674016f0a668
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -17,7 +26,18 @@
 	<h1>Agenda de Contatos</h1>
 	<a href="novo.html" class="Botao1">Novo contato</a>
 	<h3>Lista de Contatos</h3>
+<<<<<<< HEAD
 
+=======
+	<%
+		String mensagem = (String) request.getAttribute("mensagem");
+	if (mensagem != null) {
+	%>
+	<div><%=mensagem%></div>
+	<%
+		}
+	%>
+>>>>>>> 33ecb898d2fddbe52cf5888ed3e1674016f0a668
 	<table>
 		<thead>
 			<tr>
