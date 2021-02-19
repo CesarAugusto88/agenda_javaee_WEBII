@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<<<<<<< HEAD
 	<form name="frmContato" action="update" style="display: inline">
 		Id:
 		<%=contato.getIdcon()%><br /> Nome: <input type="text" name="nome"
@@ -31,17 +30,5 @@
 		<button class="Botao1">Cancelar</button>
 	</a>
 	<script src="scripts/validador.js"></script>
-=======
-<form action="update">
-		Id: <%=contato.getIdcon()%><br/>
-		Nome: <input type="text" name="nome" value="<%=contato.getNome()%>"/><br/>
-		Fone: <input type="text" name="fone" value="<%=contato.getFone()%>"/><br/>
-		Fone 2: <input type="text" name="fone2" value="<%=contato.getFone2()%>"/><br/>
-		E-mail: <input type="text" name="email" value="<%=contato.getEmail()%>"/><br/>
-		Tipo: <input type="text" name="tipo" value="<%=contato.getTipo()%>"/><br/>
-		<input type="hidden" name="idcon" value="<%=contato.getIdcon()%>"/>
-		<input type="submit" value="Enviar"/>
-</form>
->>>>>>> 33ecb898d2fddbe52cf5888ed3e1674016f0a668
 </body>
 </html>

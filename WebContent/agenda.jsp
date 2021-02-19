@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<jsp:useBean id="contatos" type="java.util.ArrayList<model.JavaBeans>" scope="request" />
+
+<jsp:useBean id="dao" class="model.DAO" />
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -15,13 +17,7 @@
 	<h1>Agenda de Contatos</h1>
 	<a href="novo.html" class="Botao1">Novo contato</a>
 	<h3>Lista de Contatos</h3>
-	<%
-		String mensagem = (String) request.getAttribute("mensagem");
-	if (mensagem != null) {
-	%>
-	<div><%=mensagem%></div>
-	<%
-		}
+
 	<table>
 		<thead>
 			<tr>
